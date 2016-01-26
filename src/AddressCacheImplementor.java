@@ -1,5 +1,4 @@
 import java.net.InetAddress;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.ListIterator;
@@ -69,7 +68,6 @@ public class AddressCacheImplementor implements AddressCache {
 	 */
 	@Override
 	public boolean contains(InetAddress address) {		
-		//return address_cache.contains(address);
 		
 		for (Address element : address_cache) {
 			if (element.getAddress().equals(address)){
@@ -174,7 +172,7 @@ public class AddressCacheImplementor implements AddressCache {
 		public void run() {
 			
 			ListIterator itr = address_cache.listIterator(address_cache.size()); 
-			int i = 0;
+
 			while(itr.hasPrevious()){
 				Address local_address = ((Address) itr.previous());
 				local_address.incrementCachedTime();
@@ -182,7 +180,6 @@ public class AddressCacheImplementor implements AddressCache {
 					itr.remove();
 					System.out.println("address expired and was removed");
 				}
-				i++;
 			}
 
 		}
